@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cengaver: Matematik</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef2f7;
+            color: #333;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #1976d2;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+        .konu-listesi {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .konu-modul {
+            width: 250px;
+            height: 150px;
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            position: relative;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .konu-modul:nth-child(1) { background-color: #f44336; }
+        .konu-modul:nth-child(2) { background-color: #2196f3; }
+        .konu-modul:nth-child(3) { background-color: #4caf50; }
+        .konu-modul:nth-child(4) { background-color: #ff9800; }
+        .konu-modul:nth-child(5) { background-color: #9c27b0; }
+        .konu-modul:nth-child(6) { background-color: #009688; }
+        .konu-modul:nth-child(7) { background-color: #ffeb3b; color: #333; }
+        .konu-modul:nth-child(8) { background-color: #607d8b; }
+        .konu-modul:nth-child(9) { background-color: #e91e63; }
+        .konu-modul:nth-child(10) { background-color: #795548; }
+        .konu-modul:nth-child(11) { background-color: #333; }
+        .konu-modul:nth-child(12) { background-color: #0d47a1; }
+
+        .konu-modul.locked {
+            background-color: #b0bec5 !important;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .konu-modul.completed {
+            background-color: #2e7d32;
+        }
+
+        .konu-modul:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .konu-modul-metin {
+            color: white;
+            text-decoration: none;
+        }
+        .konu-modul:nth-child(7) .konu-modul-metin { color: #333; }
+
+        .konu-modul.completed .konu-modul-metin,
+        .konu-modul.locked .konu-modul-metin {
+            text-decoration: none;
+        }
+
+        .konu-detay {
+            margin-top: 50px;
+            display: none;
+            text-align: left;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            margin-top: 20px;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+        .quiz-alani {
+            margin-top: 30px;
+            text-align: left;
+        }
+        .soru {
+            background-color: #f4f4f4;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            display: none;
+        }
+        .soru p {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .soru-baslik {
+            font-size: 1.2rem;
+            color: #3f51b5;
+        }
+        .soru-seviye {
+            font-size: 0.9rem;
+            color: #666;
+            margin-left: 10px;
+        }
+        .secenekler {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .secenek {
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            flex-grow: 1;
+        }
+        .secenek:hover {
+            background-color: #e0e0e0;
+        }
+        .dogru {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+        .yanlis {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            animation: shake 0.5s;
+        }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            20% { transform: translateX(-10px); }
+            40% { transform: translateX(10px); }
+            60% { transform: translateX(-10px); }
+            80% { transform: translateX(10px); }
+            100% { transform: translateX(0); }
+        }
+        .soru-durum {
+            font-size: 1rem;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        .gorev-ekrani {
+            display: none;
+            margin-top: 50px;
+        }
+        .gorev {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .gorev h4 {
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+        .gorev-tamamla-btn {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .gorev-tamamla-btn:disabled {
+            background-color: #aaa;
+            cursor: not-allowed;
+        }
+        #puan-seviye-container {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff9800;
+            margin-bottom: 20px;
+        }
+        .sinav-sonu-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+        .sinav-sonu-btn:hover {
+            background-color: #d32f2f;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            display: flex;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+        }
+        .progress-segment {
+            flex: 1;
+            background-color: #e0e0e0;
+            transition: background-color 0.5s;
+            border-right: 1px solid #ccc;
+        }
+        .progress-segment:last-child {
+            border-right: none;
+        }
+        .progress-segment.dogru {
+            background-color: #4caf50;
+        }
+        .progress-segment.yanlis {
+            background-color: #f44336;
+        }
+        .tebrik-mesaji {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            font-weight: bold;
+            color: #4caf50;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeinout 4s forwards;
+            z-index: 1000;
+        }
+        .basari-mesaji {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            font-weight: bold;
+            color: #2196f3;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeinout 4s forwards;
+            z-index: 1000;
+        }
+        @keyframes fadeinout {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 999;
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f44336;
+            animation: confetti-fall 5s forwards;
+            opacity: 0;
+        }
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotateZ(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotateZ(1080deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="ana-ekran">
+            <h2 style="color: #1976d2;">Matematik Konuları</h2>
+            <div class="konu-listesi">
+                <div class="konu-modul" data-konu-id="1">
+                    <a class="konu-modul-metin">Tam Sayılarla İşlemler</a>
+                </div>
+                <div class="konu-modul" data-konu-id="2">
+                    <a class="konu-modul-metin">Rasyonel Sayılar</a>
+                </div>
+                <div class="konu-modul" data-konu-id="3">
+                    <a class="konu-modul-metin">Rasyonel Sayılarla İşlemler</a>
+                </div>
+                <div class="konu-modul" data-konu-id="4">
+                    <a class="konu-modul-metin">Cebirsel İfadeler</a>
+                </div>
+                <div class="konu-modul" data-konu-id="5">
+                    <a class="konu-modul-metin">Üslü İfadeler</a>
+                </div>
+                <div class="konu-modul" data-konu-id="6">
+                    <a class="konu-modul-metin">Geometrik Cisimler ve Yüzey Alanları</a>
+                </div>
+                <div class="konu-modul" data-konu-id="7">
+                    <a class="konu-modul-metin">Çember ve Daire</a>
+                </div>
+                <div class="konu-modul" data-konu-id="8">
+                    <a class="konu-modul-metin">Yeni Nesil Sorular</a>
+                </div>
+                <div class="konu-modul" data-konu-id="9">
+                    <a class="konu-modul-metin">Denklemler</a>
+                </div>
+                <div class="konu-modul" data-konu-id="10">
+                    <a class="konu-modul-metin">Oran ve Orantı</a>
+                </div>
+                <div class="konu-modul" data-konu-id="11">
+                    <a class="konu-modul-metin">Yüzdeler</a>
+                </div>
+                <div class="konu-modul" data-konu-id="12">
+                    <a class="konu-modul-metin">Doğrusal Denklemler</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="gorev-ekrani" class="gorev-ekrani">
+            <h2 id="gorev-baslik"></h2>
+            <div id="puan-seviye-container">
+                <span id="puan-ekrani">Puan: 0</span> - <span id="seviye-ekrani">Seviye: 1</span>
+            </div>
+            
+            <div class="gorev">
+                <h4>Görev 1: Video İzle</h4>
+                <div id="video-player-container" class="video-container">
+                    </div>
+            </div>
+
+            <div id="quiz-görev-bölümü" class="gorev">
+                <div id="progress-bar" class="progress-bar" style="display: none;"></div>
+                <h4>Görev 2: Quiz Çöz</h4>
+                <button id="quiz-basla-btn" class="gorev-tamamla-btn">Quiz'e Başla</button>
+                <div id="quiz-alani" class="quiz-alani" style="display: none;">
+                    </div>
+            </div>
+            
+            <button class="sinav-sonu-btn" onclick="anaEkranaDon()">Ana Ekrana Dön</button>
+        </div>
+
+        <div id="telafi-ekrani" class="gorev-ekrani">
+            <h2 id="telafi-baslik"></h2>
+            <p>Üzgünüm, bu konu için yeterli başarı sağlayamadın. Lütfen videoyu tekrar izle ve telafi sorularını çöz.</p>
+            <div class="gorev">
+                <h4>Telafi Videosu</h4>
+                <div id="telafi-video-player-container" class="video-container">
+                    </div>
+            </div>
+            <div class="gorev">
+                <div id="telafi-progress-bar" class="progress-bar" style="display: none;"></div>
+                <h4>Telafi Soruları</h4>
+                <button id="telafi-quiz-basla-btn" class="gorev-tamamla-btn">Telafi Quiz'ine Başla</button>
+                <div id="telafi-quiz-alani" class="quiz-alani" style="display: none;">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="confetti-container"></div>
+    <div id="tebrik-mesaji" style="display:none;"></div>
+    <div id="basari-mesaji" style="display:none;"></div>
+    
+    <audio id="dogru-ses" src="sesler/correct.mp3" preload="auto"></audio>
+    <audio id="yanlis-ses" src="sesler/wrong.mp3" preload="auto"></audio>
+    <audio id="seviye-ses" src="sesler/levelup.mp3" preload="auto"></audio>
+
+    <script src="soru-havuzu.js"></script>
+
+    <script>
+        let mevcutPuan = 0;
+        let mevcutSeviye = 1;
+        let currentQuestionIndex = 0;
+        let currentQuizQuestions = [];
+        let dogruCevapSayisi = 0;
+        let isRemakeQuiz = false;
+        let audioUnlocked = false;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof konular === 'undefined') {
+                console.error("Hata: 'soru-havuzu.js' dosyası yüklenemedi veya 'konular' nesnesi tanımlı değil.");
+                document.getElementById('ana-ekran').innerHTML = `<h2 style="color:red;">Hata: Dosya yüklenemedi. Lütfen 'soru-havuzu.js' dosyasının doğru yerde olduğundan emin olun.</h2>`;
+                return;
+            }
+            updateKonuModulStatus();
+            addKonuModulEventListeners();
+            addQuizEventListeners();
+            addTelafiQuizEventListeners();
+            checkAudioFiles();
+            
+            document.getElementById('quiz-basla-btn').addEventListener('click', () => {
+                unlockAudio();
+                document.getElementById('quiz-basla-btn').style.display = 'none';
+                document.getElementById('progress-bar').style.display = 'flex';
+                document.getElementById('quiz-alani').style.display = 'block';
+                const sorular = document.querySelectorAll('#quiz-alani .soru');
+                if (sorular.length > 0) {
+                    sorular[0].style.display = 'block';
+                }
+            });
+
+            document.getElementById('telafi-quiz-basla-btn').addEventListener('click', () => {
+                unlockAudio();
+                document.getElementById('telafi-quiz-basla-btn').style.display = 'none';
+                document.getElementById('telafi-progress-bar').style.display = 'flex';
+                document.getElementById('telafi-quiz-alani').style.display = 'block';
+                const sorular = document.querySelectorAll('#telafi-quiz-alani .soru');
+                if (sorular.length > 0) {
+                    sorular[0].style.display = 'block';
+                }
+            });
+        });
+
+        function checkAudioFiles() {
+            const audioElements = ['dogru-ses', 'yanlis-ses', 'seviye-ses'];
+            audioElements.forEach(id => {
+                const audio = document.getElementById(id);
+                if (audio) {
+                    audio.addEventListener('loadeddata', () => {
+                        console.log(`${id} ses dosyası başarıyla yüklendi.`);
+                    });
+                    audio.addEventListener('error', (e) => {
+                        console.error(`${id} ses dosyası yüklenirken hata oluştu:`, e);
+                    });
+                }
+            });
+        }
+
+        // localStorage'dan tamamlanan konuları alır ve konu modüllerini günceller
+        function updateKonuModulStatus() {
+            const tamamlananKonular = JSON.parse(localStorage.getItem('tamamlananKonular')) || {};
+            const konuModulleri = document.querySelectorAll('.konu-modul');
+            konuModulleri.forEach((modul, index) => {
+                const konuId = parseInt(modul.dataset.konuId);
+                const isCompleted = tamamlananKonular[konuId] === true;
+                const isPreviousCompleted = konuId === 1 || tamamlananKonular[konuId - 1] === true;
+
+                if (isCompleted) {
+                    modul.classList.add('completed');
+                    modul.classList.remove('locked');
+                } else if (!isPreviousCompleted) {
+                    modul.classList.add('locked');
+                } else {
+                    modul.classList.remove('locked');
+                }
+            });
+        }
+
+        function anaEkranaDon() {
+            document.getElementById('ana-ekran').style.display = 'block';
+            document.getElementById('gorev-ekrani').style.display = 'none';
+            document.getElementById('telafi-ekrani').style.display = 'none';
+            document.getElementById('video-player-container').innerHTML = '';
+            document.getElementById('telafi-video-player-container').innerHTML = '';
+            updateKonuModulStatus();
+        }
+
+        function unlockAudio() {
+            if (audioUnlocked) return;
+            const audio = new Audio();
+            const promise = audio.play();
+            if (promise !== undefined) {
+                promise.then(() => {
+                    audioUnlocked = true;
+                }).catch(error => {
+                    console.error("Ses çalma izni alınamadı:", error);
+                });
+            }
+        }
+        
+        function addKonuModulEventListeners() {
+            const konuModulleri = document.querySelectorAll('.konu-modul');
+            konuModulleri.forEach(modul => {
+                modul.addEventListener('click', () => {
+                    if (modul.classList.contains('locked')) {
+                        alert("Bu konuya geçmek için bir önceki konuyu tamamlamalısın!");
+                        return;
+                    }
+                    const konuId = modul.dataset.konuId;
+                    const secilenKonu = konular[konuId];
+                    if (secilenKonu) {
+                        gosterKonuGorevEkrani(secilenKonu);
+                    }
+                });
+            });
+        }
+
+        function playAudio(id) {
+            if (!audioUnlocked) {
+                return;
+            }
+            const audio = document.getElementById(id);
+            if (audio) {
+                audio.currentTime = 0;
+                audio.play().catch(e => console.error(`Ses çalınamadı: ${e}`));
+            }
+        }
+
+        function handleQuizResult(e, isTelafi) {
+            const clickedSecenek = e.target.closest('.secenek');
+            const quizAlani = isTelafi ? '#telafi-quiz-alani' : '#quiz-alani';
+            const progressBar = isTelafi ? '#telafi-progress-bar' : '#progress-bar';
+
+            if (clickedSecenek && !clickedSecenek.closest('.soru').dataset.answered) {
+                const soruDiv = clickedSecenek.closest('.soru');
+                soruDiv.dataset.answered = 'true';
+
+                const soruIndex = parseInt(soruDiv.dataset.soruIndex);
+                const dogruCevap = currentQuizQuestions[soruIndex].dogruCevap;
+                const progressSegment = document.querySelector(progressBar).children[soruIndex];
+                const puan = isTelafi ? 25 : 50;
+
+                if (clickedSecenek.dataset.cevap === dogruCevap) {
+                    clickedSecenek.classList.add('dogru');
+                    mevcutPuan += puan;
+                    dogruCevapSayisi++;
+                    progressSegment.classList.add('dogru');
+                    showQuizBasariMesaji('Harika!');
+                    showConfetti();
+                    playAudio('dogru-ses');
+                } else {
+                    clickedSecenek.classList.add('yanlis');
+                    const dogruSecenek = soruDiv.querySelector(`[data-cevap="${dogruCevap}"]`);
+                    if (dogruSecenek) {
+                        dogruSecenek.classList.add('dogru');
+                    }
+                    mevcutPuan -= puan;
+                    progressSegment.classList.add('yanlis');
+                    showQuizBasariMesaji('Tekrar Dene.');
+                    playAudio('yanlis-ses');
+                }
+                
+                document.getElementById('puan-ekrani').textContent = `Puan: ${mevcutPuan}`;
+                kontrolSeviyeAtla();
+
+                Array.from(soruDiv.querySelectorAll('.secenek')).forEach(sec => {
+                    sec.style.pointerEvents = 'none';
+                });
+
+                setTimeout(() => {
+                    soruDiv.style.display = 'none';
+                    currentQuestionIndex++;
+                    if (currentQuestionIndex < currentQuizQuestions.length) {
+                        document.querySelector(`${quizAlani} [data-soru-index="${currentQuestionIndex}"]`).style.display = 'block';
+                    } else {
+                        const basariOrani = (dogruCevapSayisi / currentQuizQuestions.length) * 100;
+                        if (basariOrani >= 90) {
+                            showTebriklerMessage();
+                            alert(`Quiz tamamlandı! ${dogruCevapSayisi} doğru cevabın var. Başarı Oranın: %${basariOrani.toFixed(2)}. Toplam puanın: ${mevcutPuan}.`);
+                            
+                            // Konuyu tamamla ve bir sonraki konuyu aç
+                            const mevcutKonuId = document.querySelector('.gorev-ekrani').dataset.konuId;
+                            const tamamlananKonular = JSON.parse(localStorage.getItem('tamamlananKonular')) || {};
+                            tamamlananKonular[mevcutKonuId] = true;
+                            localStorage.setItem('tamamlananKonular', JSON.stringify(tamamlananKonular));
+
+                            anaEkranaDon();
+
+                        } else {
+                            alert(`Quiz tamamlandı! ${dogruCevapSayisi} doğru cevabın var. Başarı Oranın: %${basariOrani.toFixed(2)}. Bir sonraki konuya geçmek için başarı oranının %90 ve üzeri olmalı. Telafi ekranına yönlendiriliyorsun.`);
+                            showTelafiEkrani(parseInt(document.querySelector('.gorev-ekrani').dataset.konuId));
+                        }
+                    }
+                }, 1000);
+            }
+        }
+
+        function addQuizEventListeners() {
+            document.getElementById('quiz-alani').addEventListener('click', (e) => {
+                handleQuizResult(e, false);
+            });
+        }
+        function addTelafiQuizEventListeners() {
+            document.getElementById('telafi-quiz-alani').addEventListener('click', (e) => {
+                handleQuizResult(e, true);
+            });
+        }
+
+
+        function kontrolSeviyeAtla() {
+            const yeniSeviye = Math.floor(mevcutPuan / 500) + 1;
+            if (yeniSeviye > mevcutSeviye) {
+                mevcutSeviye = yeniSeviye;
+                document.getElementById('seviye-ekrani').textContent = `Seviye: ${mevcutSeviye}`;
+                showBasariMesaji(`Tebrikler, Seviye ${mevcutSeviye} oldun!`);
+                playAudio('seviye-ses');
+            }
+        }
+
+        function gosterKonuGorevEkrani(konu) {
+            document.getElementById('ana-ekran').style.display = 'none';
+            document.getElementById('gorev-ekrani').style.display = 'block';
+            document.getElementById('gorev-ekrani').dataset.konuId = konu.id;
+            
+            mevcutPuan = 0;
+            mevcutSeviye = 1;
+            dogruCevapSayisi = 0;
+            currentQuestionIndex = 0;
+            isRemakeQuiz = false;
+            document.getElementById('puan-ekrani').textContent = `Puan: ${mevcutPuan}`;
+            document.getElementById('seviye-ekrani').textContent = `Seviye: ${mevcutSeviye}`;
+            document.getElementById('gorev-baslik').textContent = konu.baslik;
+
+            const quizAlani = document.getElementById('quiz-alani');
+            const progressBar = document.getElementById('progress-bar');
+            
+            document.getElementById('quiz-basla-btn').style.display = 'block';
+            document.getElementById('quiz-alani').style.display = 'none';
+            progressBar.style.display = 'none';
+
+            const kolaySorular = getRandomQuestions(konu.quiz.filter(q => q.seviye === 'Kolay'), 5);
+            const ortaSorular = getRandomQuestions(konu.quiz.filter(q => q.seviye === 'Orta'), 5);
+            const zorSorular = getRandomQuestions(konu.quiz.filter(q => q.seviye === 'Zor'), 5);
+            currentQuizQuestions = [...kolaySorular, ...ortaSorular, ...zorSorular];
+            
+            if (currentQuizQuestions.length === 0) {
+                quizAlani.innerHTML = "<p>Bu konu için soru bulunmamaktadır.</p>";
+                progressBar.innerHTML = "";
+                return;
+            }
+
+            progressBar.innerHTML = currentQuizQuestions.map(() => `<div class="progress-segment"></div>`).join('');
+            quizAlani.innerHTML = currentQuizQuestions.map((soru, index) => `
+                <div class="soru" data-soru-index="${index}">
+                    <p class="soru-baslik">${index + 1}. Soru <span class="soru-seviye">(${soru.seviye})</span></p>
+                    <p>${soru.soru}</p>
+                    <div class="secenekler">
+                        ${soru.secenekler.map(secenek => `
+                            <div class="secenek" data-cevap="${secenek}">${secenek}</div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            const videoUrl = konu.video;
+            const videoId = getYouTubeVideoId(videoUrl);
+            const videoContainer = document.getElementById('video-player-container');
+            
+            if (videoId) {
+                videoContainer.innerHTML = `
+                    <iframe
+                        width="100%"
+                        height="100%"
+                        src="https://www.youtube.com/embed/${videoId}?rel=0&controls=1"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                `;
+            } else {
+                videoContainer.innerHTML = `<p style="color:red;">Video yüklenemedi. Lütfen video URL'sinin doğru olduğundan emin olun.</p>`;
+            }
+        }
+
+        function showTelafiEkrani(konuId) {
+            document.getElementById('gorev-ekrani').style.display = 'none';
+            document.getElementById('telafi-ekrani').style.display = 'block';
+            document.getElementById('telafi-ekrani').dataset.konuId = konuId;
+
+            const konu = konular[konuId];
+            document.getElementById('telafi-baslik').textContent = `${konu.baslik} - Tekrar Dene`;
+
+            isRemakeQuiz = true;
+            dogruCevapSayisi = 0;
+            currentQuestionIndex = 0;
+            currentQuizQuestions = getRandomQuestions(konu.telafi, 20); // 20 telafi sorusu al
+
+            const telafiQuizAlani = document.getElementById('telafi-quiz-alani');
+            const telafiProgressBar = document.getElementById('telafi-progress-bar');
+            
+            telafiQuizAlani.style.display = 'none';
+            telafiProgressBar.style.display = 'none';
+            document.getElementById('telafi-quiz-basla-btn').style.display = 'block';
+
+            telafiProgressBar.innerHTML = currentQuizQuestions.map(() => `<div class="progress-segment"></div>`).join('');
+            telafiQuizAlani.innerHTML = currentQuizQuestions.map((soru, index) => `
+                <div class="soru" data-soru-index="${index}">
+                    <p class="soru-baslik">${index + 1}. Soru <span class="soru-seviye">(${soru.seviye})</span></p>
+                    <p>${soru.soru}</p>
+                    <div class="secenekler">
+                        ${soru.secenekler.map(secenek => `
+                            <div class="secenek" data-cevap="${secenek}">${secenek}</div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+            
+            const videoUrl = konu.telafiVideo;
+            const videoId = getYouTubeVideoId(videoUrl);
+            const videoContainer = document.getElementById('telafi-video-player-container');
+            
+            if (videoId) {
+                videoContainer.innerHTML = `
+                    <iframe
+                        width="100%"
+                        height="100%"
+                        src="https://www.youtube.com/embed/${videoId}?rel=0&controls=1"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                `;
+            } else {
+                videoContainer.innerHTML = `<p style="color:red;">Video yüklenemedi. Lütfen telafi video URL'sinin doğru olduğundan emin olun.</p>`;
+            }
+        }
+
+
+        function getYouTubeVideoId(url) {
+            const regExp = /^(?:https?:\/\/)?(?:www\.)?(?:m\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|v\/|.+\?v=)?([^#\&\?]{11}).*/;
+            const match = url.match(regExp);
+            return (match && match[1]) ? match[1] : null;
+        }
+
+        function getRandomQuestions(arr, num) {
+            const shuffled = [...arr].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, num);
+        }
+
+        function showConfetti() {
+            const container = document.getElementById('confetti-container');
+            const colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ff9800', '#ff5722', '#795548', '#9e9e9e', '#607d8b'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = `${Math.random() * 0.5}s`;
+                confetti.style.transform = `translateY(-100vh) rotateZ(${Math.random() * 360}deg)`;
+                confetti.style.animationDuration = `${3 + Math.random() * 2}s`;
+                container.appendChild(confetti);
+            }
+            setTimeout(() => {
+                while (container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
+            }, 5000);
+        }
+
+        function showTebriklerMessage() {
+            const messageDiv = document.getElementById('tebrik-mesaji');
+            messageDiv.textContent = 'TEBRİKLER!';
+            messageDiv.classList.add('tebrik-mesaji');
+            messageDiv.style.display = 'block';
+
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+                messageDiv.classList.remove('tebrik-mesaji');
+            }, 4000);
+        }
+
+        function showQuizBasariMesaji(text) {
+            const messageDiv = document.getElementById('basari-mesaji');
+            messageDiv.textContent = text;
+            messageDiv.classList.add('basari-mesaji');
+            messageDiv.style.display = 'block';
+
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+                messageDiv.classList.remove('basari-mesaji');
+            }, 1500);
+        }
+
+        function showBasariMesaji(text) {
+            const messageDiv = document.getElementById('basari-mesaji');
+            messageDiv.textContent = text;
+            messageDiv.classList.add('basari-mesaji');
+            messageDiv.style.display = 'block';
+
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+                messageDiv.classList.remove('basari-mesaji');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>

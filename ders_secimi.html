@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cengaver: Ders Seçimi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef2f7;
+            color: #333;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #3f51b5;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+        .ders-listesi {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .ders-butonu {
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            padding: 20px;
+            text-decoration: none;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 10px;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .ders-butonu:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        .matematik {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('matematik.jpg');
+            background-color: #1976d2;
+        }
+        .fen-bilgisi {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('fen.jpg');
+            background-color: #388e3c;
+        }
+        .sosyal-bilgiler {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('sosyal.jpg');
+            background-color: #ffa000;
+        }
+        .turkce {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('turkce.jpg');
+            background-color: #9b28a8; /* Yeni renk */
+        }
+        .ingilizce {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('ingilizce.jpg');
+            background-color: #00acc1;
+        }
+        .din-kulturu {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('din.jpg');
+            background-color: #5e35b1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Ders Seçimi</h2>
+        <div class="ders-listesi">
+            <a href="matematik.html" class="ders-butonu matematik">
+                Matematik
+            </a>
+            <a href="fen.html" class="ders-butonu fen-bilgisi">
+                Fen Bilgisi
+            </a>
+            <a href="#" class="ders-butonu turkce">
+                Türkçe
+            </a>
+            <a href="#" class="ders-butonu sosyal-bilgiler">
+                Sosyal Bilgiler
+            </a>
+            <a href="#" class="ders-butonu ingilizce">
+                İngilizce
+            </a>
+            <a href="#" class="ders-butonu din-kulturu">
+                Din Kültürü
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

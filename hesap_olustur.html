@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hesap Oluştur</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            text-align: center;
+        }
+        h2 {
+            color: #337ab7;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .form-group label {
+            width: 150px;
+            text-align: left;
+            margin-right: 15px;
+        }
+        .form-group input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 12px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Hesap Oluştur</h2>
+        <form id="hesapFormu" action="#" method="post">
+            <div class="form-group">
+                <label for="username">Kullanıcı Adı:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Şifre (min. 6 karakter):</label>
+                <input type="password" id="password" name="password" minlength="6" required>
+            </div>
+
+            <div class="form-group">
+                <label for="adsoyad">Ad-Soyad:</label>
+                <input type="text" id="adsoyad" name="adsoyad" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tckimlik">TC Kimlik No:</label>
+                <input type="text" id="tckimlik" name="tckimlik" maxlength="11" pattern="[0-9]{11}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telefon">Telefon No:</label>
+                <input type="tel" id="telefon" name="telefon" pattern="[0-9]{11}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="eposta">E-Posta Adresi:</label>
+                <input type="email" id="eposta" name="eposta" required>
+            </div>
+
+            <div class="form-group">
+                <label for="okul">Okul:</label>
+                <input type="text" id="okul" name="okul" required>
+            </div>
+
+            <div class="form-group">
+                <label for="sinif">Sınıf:</label>
+                <input type="text" id="sinif" name="sinif" required>
+            </div>
+
+            <div class="form-group">
+                <label for="okulno">Okul No:</label>
+                <input type="text" id="okulno" name="okulno" required>
+            </div>
+
+            <button type="submit">Hesabı Oluştur</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('hesapFormu').addEventListener('submit', function(event) {
+            const tckimlik = document.getElementById('tckimlik').value;
+            const telefon = document.getElementById('telefon').value;
+            const password = document.getElementById('password').value;
+
+            // TC Kimlik No kontrolü
+            if (tckimlik.length !== 11 || isNaN(tckimlik)) {
+                alert('Lütfen geçerli bir 11 haneli TC Kimlik Numarası giriniz.');
+                event.preventDefault(); // Formun gönderilmesini engelle
+                return;
+            }
+
+            // Telefon No kontrolü
+            if (telefon.length !== 10 || isNaN(telefon)) {
+                alert('Lütfen geçerli bir 10 haneli Telefon Numarası giriniz.');
+                event.preventDefault();
+                return;
+            }
+
+            // Şifre kontrolü
+            if (password.length < 6) {
+                alert('Şifreniz en az 6 karakter olmalıdır.');
+                event.preventDefault();
+                return;
+            }
+
+            alert('Hesabınız başarıyla oluşturuldu!');
+            // Bu aşamadan sonra form, sunucuya gönderilebilir.
+            // event.submit() komutuyla formun gönderilmesini sağlayabilirsiniz.
+        });
+    </script>
+
+</body>
+</html>

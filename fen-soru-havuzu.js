@@ -1,0 +1,156 @@
+const konular = {
+    1: {
+        id: 1,
+        baslik: "Güneş Sistemi ve Ötesi",
+        video: "https://www.youtube.com/watch?v=RRKUfYYM4E4",
+        telafiVideo: "https://www.youtube.com/watch?v=7jMrmx4nQvk",
+        quiz: [
+            {soru: "Güneş sistemindeki en büyük gezegen hangisidir?", secenekler: ["Mars", "Jüpiter", "Venüs", "Satürn"], dogruCevap: "Jüpiter", seviye: "Kolay"},
+            {soru: "Uzay kirliliğine neden olan temel etken nedir?", secenekler: ["Yıldız kaymaları", "Meteorlar", "Ömrü bitmiş uydular", "Kuyruklu yıldızlar"], dogruCevap: "Ömrü bitmiş uydular", seviye: "Orta"},
+            {soru: "Kızıl Gezegen olarak bilinen gezegen hangisidir?", secenekler: ["Venüs", "Merkür", "Mars", "Jüpiter"], dogruCevap: "Mars", seviye: "Kolay"},
+            {soru: "Ay'ın kendi etrafında dönme süresi ne kadardır?", secenekler: ["24 saat", "27.3 gün", "30 gün", "365 gün"], dogruCevap: "27.3 gün", seviye: "Orta"},
+            {soru: "Samanyolu Galaksisi'nin şekli nasıldır?", secenekler: ["Eliptik", "Düzensiz", "Sarmal", "Çubuklu sarmal"], dogruCevap: "Çubuklu sarmal", seviye: "Zor"},
+            {soru: "Işık yılı neyi ifade eder?", secenekler: ["Zaman birimi", "Hız birimi", "Kütle birimi", "Uzaklık birimi"], dogruCevap: "Uzaklık birimi", seviye: "Zor"},
+        ],
+        telafi: [
+            {soru: "Hangi gök cismi, etrafındaki buz ve toz bulutuyla tanınır?", secenekler: ["Gezegen", "Yıldız", "Kuyruklu yıldız", "Uydu"], dogruCevap: "Kuyruklu yıldız", seviye: "Kolay"},
+            {soru: "Güneş'in en yakınındaki gezegen hangisidir?", secenekler: ["Venüs", "Mars", "Merkür", "Dünya"], dogruCevap: "Merkür", seviye: "Orta"},
+            {soru: "Hangi gezegenin halkaları vardır?", secenekler: ["Mars", "Jüpiter", "Satürn", "Neptün"], dogruCevap: "Satürn", seviye: "Kolay"},
+            {soru: "Takımyıldızları oluşturan gök cisimleri hangileridir?", secenekler: ["Gezegenler", "Uydular", "Yıldızlar", "Meteorlar"], dogruCevap: "Yıldızlar", seviye: "Orta"},
+            {soru: "Karasal gezegenlerden biri olmayan hangisidir?", secenekler: ["Dünya", "Jüpiter", "Mars", "Merkür"], dogruCevap: "Jüpiter", seviye: "Zor"},
+            {soru: "Evrenin sürekli genişlediği teorisi nedir?", secenekler: ["Büyük Patlama Teorisi", "Kütle Çekim Yasası", "Galaksi Teorisi", "Işık Yılı Teorisi"], dogruCevap: "Büyük Patlama Teorisi", seviye: "Zor"},
+        ]
+    },
+    2: {
+        id: 2,
+        baslik: "Hücre ve Bölünmeler",
+        video: "https://www.youtube.com/watch?v=Mha9BpjbkJM&t=2s",
+        telafiVideo: "https://www.youtube.com/watch?v=UKJ9AH8X9bQ",
+        quiz: [
+            {soru: "Canlıların en küçük yapı birimi nedir?", secenekler: ["Doku", "Organ", "Hücre", "Sistem"], dogruCevap: "Hücre", seviye: "Kolay"},
+            {soru: "Mitoz bölünmenin temel amacı nedir?", secenekler: ["Üreme", "Büyüme ve onarım", "Eşeyli üreme", "Kromozom sayısını yarıya indirme"], dogruCevap: "Büyüme ve onarım", seviye: "Orta"},
+            {soru: "Sadece bitki hücrelerinde bulunan organel hangisidir?", secenekler: ["Ribozom", "Mitokondri", "Kloroplast", "Endoplazmik retikulum"], dogruCevap: "Kloroplast", seviye: "Kolay"},
+            {soru: "Kromozomların en belirgin olduğu evre hangisidir?", secenekler: ["İnterfaz", "Profaz", "Anafaz", "Telofaz"], dogruCevap: "Anafaz", seviye: "Zor"},
+            {soru: "Hücrede enerji üreten organel hangisidir?", secenekler: ["Mitokondri", "Ribozom", "Kloroplast", "Lizozom"], dogruCevap: "Mitokondri", seviye: "Orta"},
+            {soru: "Mayoz bölünme sonucunda kaç hücre oluşur?", secenekler: ["2", "4", "8", "1"], dogruCevap: "4", seviye: "Zor"},
+        ],
+        telafi: [
+            {soru: "Hücre zarından madde geçişini kontrol eden yapı nedir?", secenekler: ["Sitoplazma", "Çekirdek", "Hücre duvarı", "Hücre zarı"], dogruCevap: "Hücre zarı", seviye: "Kolay"},
+            {soru: "Hücredeki kalıtsal bilgiyi taşıyan yapı nedir?", secenekler: ["Ribozom", "Kromozom", "Mitokondri", "Lizozom"], dogruCevap: "Kromozom", seviye: "Orta"},
+            {soru: "Hücrenin en dış kısmında bulunan sert ve cansız yapı nedir?", secenekler: ["Hücre zarı", "Çekirdek", "Sitoplazma", "Hücre duvarı"], dogruCevap: "Hücre duvarı", seviye: "Kolay"},
+            {soru: "Mitoz bölünmede kromozom sayısı değişir mi?", secenekler: ["Evet, yarıya iner", "Evet, iki katına çıkar", "Hayır, sabit kalır", "Duruma göre değişir"], dogruCevap: "Hayır, sabit kalır", seviye: "Orta"},
+            {soru: "Mayoz bölünme hangi hücrelerde görülür?", secenekler: ["Sinir hücreleri", "Kas hücreleri", "Üreme ana hücreleri", "Deri hücreleri"], dogruCevap: "Üreme ana hücreleri", seviye: "Zor"},
+            {soru: "Hücrenin sıvı kısmı ve organelleri nerede bulunur?", secenekler: ["Çekirdek", "Mitokondri", "Sitoplazma", "Hücre zarı"], dogruCevap: "Sitoplazma", seviye: "Zor"},
+        ]
+    },
+    3: {
+        id: 3,
+        baslik: "Kuvvet ve Enerji",
+        video: "https://www.youtube.com/watch?v=eaxF9U_Zoz0",
+        telafiVideo: "https://www.youtube.com/watch?v=3U139GUJhAw",
+        quiz: [
+            {soru: "Birim zamanda yapılan işe ne ad verilir?", secenekler: ["Kuvvet", "Enerji", "Güç", "İş"], dogruCevap: "Güç", seviye: "Kolay"},
+            {soru: "Esneklik potansiyel enerjisine sahip olan cisim hangisidir?", secenekler: ["Fırlatılan top", "Sıkıştırılmış yay", "Durmakta olan araba", "Yüksekteki kitap"], dogruCevap: "Sıkıştırılmış yay", seviye: "Orta"},
+            {soru: "Duran bir cisme etki eden kuvvetin cisme ne kazandırması beklenir?", secenekler: ["Enerji", "İş", "Hız", "Sürtünme"], dogruCevap: "Hız", seviye: "Orta"},
+            {soru: "İşin birimi nedir?", secenekler: ["Newton", "Joule", "Watt", "Kilogram"], dogruCevap: "Joule", seviye: "Kolay"},
+            {soru: "Bir cismin hızından dolayı sahip olduğu enerji türü hangisidir?", secenekler: ["Potansiyel enerji", "Kimyasal enerji", "Kinetik enerji", "Isı enerjisi"], dogruCevap: "Kinetik enerji", seviye: "Kolay"},
+            {soru: "Toplam enerjinin korunduğunu belirten yasa hangisidir?", secenekler: ["Enerji Dönüşüm Yasası", "İş-Güç Yasası", "Newton'un Birinci Yasası", "Kinetik Enerji Yasası"], dogruCevap: "Enerji Dönüşüm Yasası", seviye: "Zor"},
+        ],
+        telafi: [
+            {soru: "Bir cismin yerden yüksekliğinden dolayı sahip olduğu enerjiye ne denir?", secenekler: ["Kinetik enerji", "Potansiyel enerji", "Isı enerjisi", "Işık enerjisi"], dogruCevap: "Potansiyel enerji", seviye: "Kolay"},
+            {soru: "Bir cismin hareketine zıt yönde etki eden kuvvet nedir?", secenekler: ["Çekim kuvveti", "Sürtünme kuvveti", "İtme kuvveti", "Kaldırma kuvveti"], dogruCevap: "Sürtünme kuvveti", seviye: "Orta"},
+            {soru: "Kuvvetin birimi nedir?", secenekler: ["Joule", "Watt", "Newton", "Metre"], dogruCevap: "Newton", seviye: "Kolay"},
+            {soru: "Bir atıcının oku gererek yayı germesi hangi enerjiye örnektir?", secenekler: ["Kinetik", "Potansiyel", "Kimyasal", "Esneklik potansiyel enerjisi"], dogruCevap: "Esneklik potansiyel enerjisi", seviye: "Orta"},
+            {soru: "Bir cismin yere düşerken potansiyel enerjisi neye dönüşür?", secenekler: ["Isı enerjisine", "Kinetik enerjiye", "Kimyasal enerjiye", "Ses enerjisine"], dogruCevap: "Kinetik enerjiye", seviye: "Zor"},
+            {soru: "Fiziksel anlamda iş yapılabilmesi için hangi şart sağlanmalıdır?", secenekler: ["Kuvvet uygulanmalı", "Hacim değişmeli", "Cisim hareket etmeli ve hareket yönünde kuvvet olmalı", "Sıcaklık değişmeli"], dogruCevap: "Cisim hareket etmeli ve hareket yönünde kuvvet olmalı", seviye: "Zor"},
+        ]
+    },
+    4: {
+        id: 4,
+        baslik: "Saf Madde ve Karışımlar",
+        video: "https://www.youtube.com/watch?v=m4qxLftBXX4",
+        telafiVideo: "https://www.youtube.com/watch?v=MSzYDBK3Dxs",
+        quiz: [
+            {soru: "Farklı tür atomlardan oluşan saf maddeye ne ad verilir?", secenekler: ["Element", "Karışım", "Bileşik", "Homojen karışım"], dogruCevap: "Bileşik", seviye: "Kolay"},
+            {soru: "Aşağıdakilerden hangisi bir element sembolü değildir?", secenekler: ["H", "O", "NaCl", "He"], dogruCevap: "NaCl", seviye: "Orta"},
+            {soru: "Saf maddelerin ayırt edici özellikleri nelerdir?", secenekler: ["Yoğunluk ve hacim", "Hacim ve kütle", "Erime noktası ve kaynama noktası", "Şekil ve renk"], dogruCevap: "Erime noktası ve kaynama noktası", seviye: "Kolay"},
+            {soru: "Tuzlu su hangi tür karışıma örnektir?", secenekler: ["Heterojen karışım", "Süspansiyon", "Emülsiyon", "Homojen karışım"], dogruCevap: "Homojen karışım", seviye: "Orta"},
+            {soru: "İki veya daha fazla maddenin kendi özelliklerini kaybetmeden bir araya gelmesiyle oluşan madde türü hangisidir?", secenekler: ["Bileşik", "Element", "Karışım", "Molekül"], dogruCevap: "Karışım", seviye: "Kolay"},
+            {soru: "Aşağıdakilerden hangisi bir bileşiktir?", secenekler: ["Demir", "Su", "Oksijen", "Hava"], dogruCevap: "Su", seviye: "Zor"},
+        ],
+        telafi: [
+            {soru: "Tek tür atomdan oluşan saf madde nedir?", secenekler: ["Element", "Bileşik", "Karışım", "Çözelti"], dogruCevap: "Element", seviye: "Kolay"},
+            {soru: "Ayran hangi karışıma örnektir?", secenekler: ["Homojen karışım", "Süspansiyon", "Emülsiyon", "Alaşım"], dogruCevap: "Süspansiyon", seviye: "Orta"},
+            {soru: "Bileşiklerin kimyasal sembolü nasıl yazılır?", secenekler: ["Sadece büyük harf", "Sadece küçük harf", "Büyük ve küçük harflerin kombinasyonu", "Sadece sayılar"], dogruCevap: "Büyük ve küçük harflerin kombinasyonu", seviye: "Kolay"},
+            {soru: "Birden fazla faz içeren karışımlar ne olarak adlandırılır?", secenekler: ["Homojen karışımlar", "Heterojen karışımlar", "Çözeltiler", "Alaşımlar"], dogruCevap: "Heterojen karışımlar", seviye: "Orta"},
+            {soru: "Şekerli su karışımını ayırmak için hangi yöntem kullanılabilir?", secenekler: ["Süzme", "Damıtma (damıtarak ayırma)", "Eleme", "Mıknatısla ayırma"], dogruCevap: "Damıtma (damıtarak ayırma)", seviye: "Zor"},
+            {soru: "Aşağıdaki maddelerden hangisi elementtir?", secenekler: ["NaCl", "CO2", "H2O", "Fe"], dogruCevap: "Fe", seviye: "Zor"},
+        ]
+    },
+    5: {
+        id: 5,
+        baslik: "Işığın Madde İle Etkileşimi",
+        video: "https://www.youtube.com/watch?v=DwdIHCypVRI",
+        telafiVideo: "https://www.youtube.com/watch?v=oV09MdHGLGo",
+        quiz: [
+            {soru: "Işığın saydam bir ortamdan başka bir saydam ortama geçerken yön değiştirmesine ne denir?", secenekler: ["Yansıma", "Soğurulma", "Kırılma", "Saçılma"], dogruCevap: "Kırılma", seviye: "Kolay"},
+            {soru: "Bir maddenin üzerine düşen ışığın tamamını yansıttığı renk hangisidir?", secenekler: ["Siyah", "Mavi", "Kırmızı", "Beyaz"], dogruCevap: "Beyaz", seviye: "Orta"},
+            {soru: "En çok ışığı soğuran renk hangisidir?", secenekler: ["Beyaz", "Sarı", "Mavi", "Siyah"], dogruCevap: "Siyah", seviye: "Kolay"},
+            {soru: "Işığın düzgün ve pürüzsüz bir yüzeyden geldiği ortama geri dönmesine ne denir?", secenekler: ["Yansıma", "Kırılma", "Soğurulma", "Dağılma"], dogruCevap: "Yansıma", seviye: "Kolay"},
+            {soru: "Hangi ortam ışığın en yavaş ilerlediği ortamdır?", secenekler: ["Boşluk", "Hava", "Su", "Cam"], dogruCevap: "Cam", seviye: "Zor"},
+            {soru: "Cisimler neden renklidir?", secenekler: ["Işık yayan kaynak olmaları", "Işığı soğurmaları", "Gelen ışığı yansıtmaları", "Gelen ışığın bir kısmını soğurup, bir kısmını yansıtmaları"], dogruCevap: "Gelen ışığın bir kısmını soğurup, bir kısmını yansıtmaları", seviye: "Orta"},
+        ],
+        telafi: [
+            {soru: "Işığın bir engelle karşılaştığında doğrultu değiştirmesine ne denir?", secenekler: ["Yansıma", "Kırılma", "Soğurulma", "Dağılma"], dogruCevap: "Yansıma", seviye: "Kolay"},
+            {soru: "Gölge oluşumunun nedeni nedir?", secenekler: ["Işığın kırılması", "Işığın soğurulması", "Işığın düzgün yayılması", "Işığın doğrusal yolla yayılması"], dogruCevap: "Işığın doğrusal yolla yayılması", seviye: "Orta"},
+            {soru: "Bir cisimden yayılan ışık ışınlarının gözümüze ulaşması sonucu ne oluşur?", secenekler: ["Kırılma", "Yansıma", "Görme", "Soğurulma"], dogruCevap: "Görme", seviye: "Kolay"},
+            {soru: "Tamamen şeffaf olan bir maddeye ne denir?", secenekler: ["Saydam", "Yarı saydam", "Opak", "Işık geçirmez"], dogruCevap: "Saydam", seviye: "Orta"},
+            {soru: "Beyaz ışık hangi renklerin birleşiminden oluşur?", secenekler: ["Kırmızı, Mavi, Yeşil", "Tüm ana renkler", "Sadece siyah ve beyaz", "Tüm ara renkler"], dogruCevap: "Tüm ana renkler", seviye: "Zor"},
+            {soru: "Işığın enerjisinin bir cisim tarafından emilmesine ne denir?", secenekler: ["Yansıma", "Kırılma", "Soğurulma", "Dağılma"], dogruCevap: "Soğurulma", seviye: "Zor"},
+        ]
+    },
+    6: {
+        id: 6,
+        baslik: "Canlılarda Üreme, Büyüme ve Gelişme",
+        video: "https://www.youtube.com/watch?v=s4o0tZ_hpkg",
+        telafiVideo: "https://www.youtube.com/watch?v=Cd92e5C31WU",
+        quiz: [
+            {soru: "Çiçekli bir bitkinin dişi üreme organı nedir?", secenekler: ["Çanak yaprak", "Taç yaprak", "Dişicik borusu", "Sapçık"], dogruCevap: "Dişicik borusu", seviye: "Kolay"},
+            {soru: "Memelilerde embriyonun gelişimini sağlayan yapı nedir?", secenekler: ["Yumurta", "Yavru", "Anne karnı (rahim)", "Tozlaşma"], dogruCevap: "Anne karnı (rahim)", seviye: "Orta"},
+            {soru: "Metamorfoz (başkalaşım) geçiren canlıya örnek hangisidir?", secenekler: ["İnsan", "Kuş", "Kurbağa", "Balık"], dogruCevap: "Kurbağa", seviye: "Kolay"},
+            {soru: "Eşeysiz üremeye örnek hangisidir?", secenekler: ["Sürüngenler", "Yavrulama", "Tomurcuklanma", "Döllenme"], dogruCevap: "Tomurcuklanma", seviye: "Orta"},
+            {soru: "Tohumun uygun şartlarda yeni bir bitkiyi oluşturmasına ne denir?", secenekler: ["Döllenme", "Tozlaşma", "Çimlenme", "Büyüme"], dogruCevap: "Çimlenme", seviye: "Kolay"},
+            {soru: "İnsanlarda döllenmenin gerçekleştiği yer neresidir?", secenekler: ["Yumurtalık", "Döl yatağı", "Yumurtalık kanalı", "Erkek üreme organı"], dogruCevap: "Yumurtalık kanalı", seviye: "Zor"},
+        ],
+        telafi: [
+            {soru: "Erkek üreme hücresi nedir?", secenekler: ["Yumurta", "Sperm", "Zigot", "Embriyo"], dogruCevap: "Sperm", seviye: "Kolay"},
+            {soru: "Polenlerin dişi organa taşınması olayı nedir?", secenekler: ["Döllenme", "Büyüme", "Tozlaşma", "Gelişme"], dogruCevap: "Tozlaşma", seviye: "Orta"},
+            {soru: "Bir canlının yaşam süresince geçirdiği tüm değişiklikler ne olarak adlandırılır?", secenekler: ["Üreme", "Büyüme", "Gelişme", "Çoğalma"], dogruCevap: "Gelişme", seviye: "Kolay"},
+            {soru: "Eşeyli üreme için gerekli olan hücreler nelerdir?", secenekler: ["Vücut hücreleri", "Doku hücreleri", "Üreme hücreleri", "Sinir hücreleri"], dogruCevap: "Üreme hücreleri", seviye: "Orta"},
+            {soru: "Yumurta ve spermin birleşmesi sonucu oluşan hücreye ne ad verilir?", secenekler: ["Embriyo", "Yavru", "Zigot", "Fetus"], dogruCevap: "Zigot", seviye: "Zor"},
+            {soru: "Bitkilerde eşeysiz üremenin temel biçimi nedir?", secenekler: ["Çimlenme", "Vejetatif üreme", "Tozlaşma", "Döllenme"], dogruCevap: "Vejetatif üreme", seviye: "Zor"},
+        ]
+    },
+    7: {
+        id: 7,
+        baslik: "Elektrik Devreleri",
+        video: "https://www.youtube.com/watch?v=h6a1SEKRq4k",
+        telafiVideo: "https://www.youtube.com/watch?v=yrj90Q9ypMg",
+        quiz: [
+            {soru: "Devredeki akımı ölçen alet hangisidir?", secenekler: ["Voltmetre", "Ampermetre", "Ohmmetre", "Termometre"], dogruCevap: "Ampermetre", seviye: "Kolay"},
+            {soru: "Bir elektrik devresinde seri bağlı dirençler artırılırsa ne olur?", secenekler: ["Toplam direnç artar", "Toplam direnç azalır", "Devreden geçen akım artar", "Akım sabit kalır"], dogruCevap: "Toplam direnç artar", seviye: "Orta"},
+            {soru: "Aşağıdakilerden hangisi yalıtkan maddedir?", secenekler: ["Bakır tel", "Alüminyum", "Cam", "Altın"], dogruCevap: "Cam", seviye: "Kolay"},
+            {soru: "Paralel bağlı ampullerin parlaklığı ampul sayısına göre nasıl değişir?", secenekler: ["Parlaklık artar", "Parlaklık azalır", "Parlaklık değişmez", "Önce artar sonra azalır"], dogruCevap: "Parlaklık değişmez", seviye: "Orta"},
+            {soru: "Devredeki gerilimi ölçen alet hangisidir?", secenekler: ["Ampermetre", "Voltmetre", "Ohmmetre", "Dinamometre"], dogruCevap: "Voltmetre", seviye: "Kolay"},
+            {soru: "Bir devredeki direncin birimi nedir?", secenekler: ["Volt", "Amper", "Ohm", "Watt"], dogruCevap: "Ohm", seviye: "Zor"},
+        ],
+        telafi: [
+            {soru: "Pilin devredeki görevi nedir?", secenekler: ["Akımı ölçmek", "Direnci ayarlamak", "Enerji sağlamak", "Gerilimi düşürmek"], dogruCevap: "Enerji sağlamak", seviye: "Kolay"},
+            {soru: "Anahtarın devredeki görevi nedir?", secenekler: ["Akımı yönlendirmek", "Devreyi açıp kapamak", "Gerilimi ölçmek", "Işık vermek"], dogruCevap: "Devreyi açıp kapamak", seviye: "Orta"},
+            {soru: "Aşağıdakilerden hangisi iletken bir maddedir?", secenekler: ["Plastik", "Tahta", "Demir", "Lastik"], dogruCevap: "Demir", seviye: "Kolay"},
+            {soru: "Seri bağlı bir devredeki tüm ampullerden geçen akım nasıl olur?", secenekler: ["Farklı", "Eşit", "Sıfır", "Değişken"], dogruCevap: "Eşit", seviye: "Orta"},
+            {soru: "Bir devrenin bir elemanından geçen akımın, gerilime oranı hangi fiziksel büyüklüğü verir?", secenekler: ["Güç", "Enerji", "Direnç", "Kuvvet"], dogruCevap: "Direnç", seviye: "Zor"},
+            {soru: "Paralel bağlı bir devredeki ampullerden biri patlarsa diğerleri nasıl etkilenir?", secenekler: ["Diğerleri de söner", "Diğerleri daha parlak yanar", "Diğerlerinin parlaklığı değişmez", "Devreye zarar verir"], dogruCevap: "Diğerlerinin parlaklığı değişmez", seviye: "Zor"},
+        ]
+    },
+};
