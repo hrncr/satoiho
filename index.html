@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cengaver: Ders Kahramanları</title>
+    <style>
+        /* Genel sayfa ayarları */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef2f7;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Üst bölüm (Header) tasarımı */
+        header {
+            background-color: #3f51b5; /* Koyu Mavi */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            color: #ffc107; /* Sarı başlık rengi */
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            font-style: italic;
+            margin: 5px 0 20px;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        header nav a:hover {
+            color: #ffc107; /* Sarıya dönsün */
+        }
+        
+        /* Banner alanı */
+        #banner {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('banner.jpg') no-repeat center center/cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        #banner h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        #banner p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #ffc107;
+            color: #333;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #ffca28;
+        }
+
+        /* İçerik bölümleri */
+        section {
+            padding: 60px 0;
+        }
+        
+        #neden-level-up {
+            background-color: white;
+            text-align: center;
+        }
+
+        #neden-level-up h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #3f51b5;
+        }
+        
+        #neden-level-up div {
+            display: inline-block;
+            width: 30%;
+            margin: 0 1%;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            vertical-align: top;
+        }
+        
+        #nasil-calisir {
+            background-color: #eef2f7;
+            text-align: center;
+        }
+        
+        #nasil-calisir h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #3f51b5;
+        }
+        
+        #nasil-calisir ol {
+            list-style-type: none;
+            padding: 0;
+            display: inline-block;
+            text-align: left;
+        }
+        
+        #nasil-calisir li {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            border-left: 3px solid #ffc107;
+            padding-left: 10px;
+        }
+        
+        /* Alt bölüm (Footer) */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* Yeni: Puan göstergesi */
+        .score-display {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffc107;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            z-index: 20;
+        }
+    </style>
+    <script src="score-manager.js"></script>
+</head>
+<body>
+
+    <div class="score-display">Puan: <span id="total-score">0</span></div>
+
+    <div class="container">
+        <header>
+            <h1>Cengaver</h1>
+            <p>Ders Kahramanları</p>
+            <nav>
+                <a href="proje1.html">Ana Sayfa</a> | 
+                <a href="ders_secimi.html">Dersler</a> | 
+                <a href="hesap_olustur.html">Kaydol</a> | 
+                <a href="giris_yap.html">Giriş Yap</a>
+            </nav>
+        </header>
+
+        <section id="banner">
+            <h2>Ders Çalış, Güçlen, Seviye Atla!</h2>
+            <p>Eğlenerek öğrenmeye hemen başla.</p>
+            <a href="ders_secimi.html" class="button">Hemen Başla</a>
+        </section>
+
+        <section id="neden-level-up">
+            <h2>Neden Cengaver?</h2>
+            <div>
+                <h3>Oyunlaştırılmış Öğrenme</h3>
+                <p>Dersler artık sıkıcı değil, hepsi birer görev!</p>
+            </div>
+            <div>
+                <h3>Kişiselleştirilmiş İlerleme</h3>
+                <p>Kendi karakterini tasarla, derslerini takip et ve seviye atla!</p>
+            </div>
+            <div>
+                <h3>Motivasyon ve Ödüller</h3>
+                <p>Çalıştıkça puan kazan, karakterine yeni eşyalar al!</p>
+            </div>
+        </section>
+
+        <section id="nasil-calisir">
+            <h2>Nasıl Çalışır?</h2>
+            <ol>
+                <li>Kaydol ve karakterini oluştur.</li>
+                <li>Günlük görevlerini tamamla (ders çalış, soru çöz).</li>
+                <li>XP kazan, seviye atla ve yeni eşyaların kilidini aç.</li>
+            </ol>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 Cengaver. Tüm hakları saklıdır.</p>
+        </footer>
+    </div>
+</body>
+</html>
